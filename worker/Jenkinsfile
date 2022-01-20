@@ -27,13 +27,13 @@ pipeline {
             steps {
               dir('worker') {
                 echo 'mvn package'
-            }  
+            }
           }
         }
     }
     post {
         always {
-            echo 'This pipeline is completed'
+            echo 'This pipeline is completed now'
         }
     }
 }
