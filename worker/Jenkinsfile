@@ -26,13 +26,15 @@ pipeline {
 
             steps {
               dir('worker') {
-                echo 'mvn package'
+                echo 'mvn package -DskipTess'
             }
           }
         }
+
     }
     post {
         always {
+            archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
             echo 'This pipeline is completed now'
         }
     }
