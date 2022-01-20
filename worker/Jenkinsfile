@@ -10,20 +10,25 @@ pipeline {
         stage('build') {
             steps {
                 echo 'Compile'
-                dir['worker'] {
+                dir('worker') {
                   sh 'mvn compile'
                 }
             }
         }
         stage('test') {
             steps {
-                echo 'Test'
+              dir('worker') {
+                echo 'mvn clean test'
+              }
             }
         }
         stage('package') {
+
             steps {
-                echo 'Package'
-            }
+              dir('worker') {
+                echo 'mvn package'
+            }  
+          }
         }
     }
     post {
