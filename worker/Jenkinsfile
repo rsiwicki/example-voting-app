@@ -9,7 +9,6 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                echo 'Compile'
                 dir('worker') {
                   sh 'mvn compile'
                 }
@@ -18,7 +17,7 @@ pipeline {
         stage('test') {
             steps {
               dir('worker') {
-                echo 'mvn clean test'
+                sh 'mvn clean test'
               }
             }
         }
@@ -26,12 +25,12 @@ pipeline {
 
             steps {
               dir('worker') {
-                echo 'mvn package -DskipTests'
+                sh 'mvn package -DskipTests'
             }
           }
         }
-
     }
+
     post {
         always {
             archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
