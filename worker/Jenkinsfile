@@ -8,27 +8,42 @@ pipeline {
 
     stages {
         stage('build') {
+            when {
+              changeset '**/worker/**'
+            }
             steps {
-                echo 'Compile'
-                dir['worker'] {
+                dir('worker') {
                   sh 'mvn compile'
                 }
             }
         }
         stage('test') {
+            when {
+              changeset '**/worker/**'
+            }
             steps {
-                echo 'Test'
+              dir('worker') {
+                sh 'mvn clean test'
+              }
             }
         }
         stage('package') {
-            steps {
-                echo 'Package'
+            when {
+              branch 'master'
+              changeset '**/worker/**'
             }
+            steps {
+              dir('worker') {
+                sh 'mvn package -DskipTests'
+                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+            }
+          }
         }
     }
+
     post {
         always {
-            echo 'This pipeline is completed'
+            echo 'This pipeline is completed now :-)'
         }
     }
 }
