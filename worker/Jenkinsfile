@@ -1,6 +1,6 @@
 pipeline {
-    agent none 
 
+    agent none 
 
     stages {
         stage('build') {
@@ -78,6 +78,7 @@ pipeline {
     post {
         always {
             echo 'This pipeline is completed now dockerized >-)'
+
         }
     }
 }
