@@ -76,7 +76,7 @@ pipeline {
 
     post {
         always {
-            echo 'This pipeline is completed now'
+            echo 'This pipeline is completed now dockerized :-)'
         }
     }
 }
