@@ -67,7 +67,7 @@ pipeline {
         branch 'master'
       }
       steps {
-        echo 'worker app with docker'
+        echo 'worker app with docker start enhanced'
         script {
           docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin'){
             def workerImage = docker.build("robrockdataio/worker:v${env.BUILD_ID}","./worker")
