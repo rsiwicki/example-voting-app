@@ -4,7 +4,7 @@ describe('mock test 1', () => {
   it('unit test 1', () => {
     expect(true).to.be.true;
   });
-}); 
+});
 
 
 describe('mock test 2', () => {
@@ -32,4 +32,8 @@ describe('mock test 5 blah', () => {
   });
 });
 
-
+describe('mock test 6 blah', () => {
+  it('unit test 6', () => {
+    expect(true).to.be.true;
+  });
+});
